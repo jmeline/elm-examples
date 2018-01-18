@@ -20,30 +20,13 @@ type alias Model =
     }
 
 
-
---
--- type alias Comic =
---     { number : Int
---     , alt : String
---     , title : String
---     , safeTitle : String
---     , day : String
---     , month : String
---     , year : String
---     , img : String
---     , link : String
---     , news : String
---     , transcript : String
---     }
-
-
 type alias Comic =
     { title : String
     , img : String
     }
 
 
-initModel =
+initComic =
     Comic "" ""
 
 
@@ -53,7 +36,7 @@ init =
         "XKCD"
         ""
         ""
-        initModel
+        initComic
     , getRandomComic
     )
 
