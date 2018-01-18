@@ -99,3 +99,33 @@ Elm brings to the table a couple of core data structures that will be instrument
       - can hold many values but the values must be of the same type.
       - a handful of higher order functions are built in such as Map, Filter,
 
+  - Tuples on the other hand can hold any type. You can put as many values as you want into a tuple. The unfortunate problem with tuples is that extracting and updating a single element isn’t simple. Records to the rescue.
+  - Records
+    - Record is a key-value pair, similar to objects in javascript or python.
+You cannot ask for a field that does not exist. No field will ever be undefined or null.
+
+### Immutability
+
+ - Every data structure in elm is immutable. When a value is updated, a new data structure is created. The ”merge” operator works much like the spread operator does in javascript. It takes the record along with every key that it has on the left of the merge operator, and updates the fields on the right.
+ - Be aware that the field you’ve chosen to update must already exist in the record. New fields aren’t allowed here because it will break the record’s type. A new record needs to be created.
+ - You may think that creating everytime is wasteful and inefficient. Many languages, including elm, implement what is called persistent data structures. Once a data structure is created
+
+### Type Aliases
+
+ - With type aliases, by defining a type, elm gives us a constructor function that takes in arguments in order.
+As we take a look at the field color, we would like to avoid having to write as much runtime validation as possible. Because we delegated it as a String, We will have to validate it via runtime checks. We can do better by leveraging elm’s built in type checking
+ - Elm has what are called Union Types
+
+### Union Types
+
+ - With type aliases, by defining a type, elm gives us a constructor function that takes in arguments in order.
+As we take a look at the field color, we would like to avoid having to write as much runtime validation as possible. Because we delegated it as a String, We will have to validate it via runtime checks. We can do better by leveraging elm’s built in type checking. By creating a type called Color, we can have Elm
+ - Elm has what are called Union Types. It allows you to represent complex data much more naturally.  The way this is read is a color can be Black Or Blue Or White Or Blend. Union types give us constructor functions as well. Blend takes two arguments for its constructor.
+ - You need the parenthesis otherwise Elm will interpret this as passing two arguments to Cat instead of to Blend.
+Union types are helpful for many circumstances. It is common to use them to describe the types of messages that a update our models. Other uses are to define different states data could be in such as in a Todo list where data could be completed, active, or a list of tasks. It simply is a state machine that gives your application a limited subset of available possibilities completely backed by the elm compiler for compile time validation.
+
+### Maybe Type
+
+ - Now, Elm doesn’t have the notion of a null value yet null values can happen everywhere. A common example is pulling data back about a user from a database. The user could not exist. How do we handle these situations? Elm defines a special union type called Maybe. Here is the source code in elm.
+ - The way we read this is We Just have a Cat or a User or nothing, where cat or a user could be anything. The letter ‘A’ in Elm here means “Anything.” It could be a record, list of strings, anything. This is the same idea as a Generic type.
+ - If you want to have a Maybe value, you have to use the Nothing or Just constructors to create it. This means that to deal with the data, you have to use a case expression. This means the compiler can ensure that you have definitely covered both possibilities.
